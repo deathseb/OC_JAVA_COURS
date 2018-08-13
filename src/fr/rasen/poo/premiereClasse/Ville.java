@@ -1,5 +1,8 @@
 package fr.rasen.poo.premiereClasse;
 
+import fr.rasen.poo.exceptions.NomVilleException;
+import fr.rasen.poo.exceptions.NombreHabitantException;
+
 public class Ville {
 	protected String nomVille;
 	protected String nomPays;
@@ -12,17 +15,23 @@ public class Ville {
 	public Ville(){
 		nbreInstances++;
 		nbreInstancesBis++;
-		System.out.println("Création d'une ville !");          
+		System.out.println("Crï¿½ation d'une ville !");          
 		nomVille = "Inconnu";
 		nomPays = "Inconnu";
 		nbreHabitants = 0;
 		this.setCategorie();
 	}
 
-	public Ville(String pNom, int pNbre, String pPays){
+	public Ville(String pNom, int pNbre, String pPays) throws NombreHabitantException, NomVilleException {
+		if (pNbre < 0) {
+			throw new NombreHabitantException(pNbre);
+		}
+		
+		if(pNom.length() < 3)
+			throw new NomVilleException("Le nom de la ville est infÃ©rieur Ã  3 caractÃ¨res ! nom = " + pNom);
 		nbreInstances++;
 		nbreInstancesBis++;
-		System.out.println("Création d'une ville avec des paramètres !");
+		System.out.println("Crï¿½ation d'une ville avec des paramï¿½tres !");
 		nomVille = pNom;
 		nomPays = pPays;
 		nbreHabitants = pNbre;
@@ -71,17 +80,17 @@ public class Ville {
 	}
 
 	public String decrisToi(){
-		return "\t"+this.nomVille+" est une ville de "+this.nomPays+ ", elle comporte : "+this.nbreHabitants+" habitant(s) => elle est donc de catégorie : "+this.categorie;
+		return "\t"+this.nomVille+" est une ville de "+this.nomPays+ ", elle comporte : "+this.nbreHabitants+" habitant(s) => elle est donc de catï¿½gorie : "+this.categorie;
 	}
 
 	public String comparer(Ville v1){
 		String str = new String();
 
 		if (v1.getNombreHabitants() > this.nbreHabitants)
-			str = v1.getNom()+" est une ville plus peuplée que "+this.nomVille;
+			str = v1.getNom()+" est une ville plus peuplï¿½e que "+this.nomVille;
 
 		else
-			str = this.nomVille+" est une ville plus peuplée que "+v1.getNom();
+			str = this.nomVille+" est une ville plus peuplï¿½e que "+v1.getNom();
 
 		return str;
 	}
@@ -91,7 +100,7 @@ public class Ville {
 	}  
 	
 	public String toString() {
-		return "\t"+this.nomVille+" est une ville de "+this.nomPays+ ", elle comporte : "+this.nbreHabitants+" habitant(s) => elle est donc de catégorie : "+this.categorie;
+		return "\t"+this.nomVille+" est une ville de "+this.nomPays+ ", elle comporte : "+this.nbreHabitants+" habitant(s) => elle est donc de catï¿½gorie : "+this.categorie;
 	}
 
 	@Override

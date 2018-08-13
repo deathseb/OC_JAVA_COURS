@@ -1,7 +1,9 @@
-package fr.rasen.poo.héritage;
+package fr.rasen.poo.heritage;
 
 import java.util.Objects;
 
+import fr.rasen.poo.exceptions.NomVilleException;
+import fr.rasen.poo.exceptions.NombreHabitantException;
 import fr.rasen.poo.premiereClasse.Ville;
 
 public class Capitale extends Ville {
@@ -12,7 +14,7 @@ public class Capitale extends Ville {
 		monument = "aucun";
 	}
 
-	public Capitale(String nom, int hab, String pays, String monument) {
+	public Capitale(String nom, int hab, String pays, String monument) throws NombreHabitantException, NomVilleException {
 		super(nom, hab, pays);
 		this.monument = monument;
 	}
