@@ -75,8 +75,7 @@ public class ZFenetre extends JFrame{
 		});
 		animation.add(quitter);
 
-		lancer.addActionListener(new StartAnimationListener());
-	    animation.add(lancer);
+	
 		//Menu forme    
 		bg.add(carre);
 		bg.add(triangle);
