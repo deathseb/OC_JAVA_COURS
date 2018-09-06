@@ -8,11 +8,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 
 public class Fenetre extends JFrame {
@@ -35,7 +38,12 @@ public class Fenetre extends JFrame {
 	
 	private Panneau panneau = new Panneau();
 	
-	
+	private JToolBar barreOutil = new JToolBar();
+	private JButton red = new JButton(new ImageIcon("src/images/ardoise_magique/rouge.jpg"));
+	private JButton blue = new JButton(new ImageIcon("src/images/ardoise_magique/bleu.jpg"));
+	private JButton green = new JButton(new ImageIcon("src/images/ardoise_magique/vert.jpg"));
+	private JButton circle = new JButton(new ImageIcon("src/images/ardoise_magique/brush_circle.jpg"));
+	private JButton square = new JButton(new ImageIcon("src/images/ardoise_magique/brush_square.jpg"));
 	
 
 	
@@ -71,6 +79,12 @@ public class Fenetre extends JFrame {
 		formeP.setMnemonic('o');
 		carre.setMnemonic('c');
 		
+		barreOutil.add(red);
+		barreOutil.add(blue);
+		barreOutil.add(green);
+		barreOutil.add(circle);
+		barreOutil.add(square);
+		
 		quitter.addActionListener(new ActionListener() {
 
 			@Override
@@ -98,6 +112,7 @@ public class Fenetre extends JFrame {
 		edition.add(couleurP);
 		menu.add(edition);
 		this.setJMenuBar(menu);
+		this.add(barreOutil, BorderLayout.NORTH);
 		
 		this.getContentPane().add(panneau, BorderLayout.CENTER);
 		this.setVisible(true);
