@@ -39,7 +39,7 @@ public class DeleteButtonEditor extends DefaultCellEditor {
 		public void actionPerformed(ActionEvent event) {
 			if(table.getRowCount() > 0){
 				System.out.println("coucou du bouton : "+ ((JButton)event.getSource()).getText() );
-				((ZModel)table.getModel()).removeRow(this.row);
+			//	((ZModel)table.getModel()).removeRow(this.row);
 
 			}
 		}

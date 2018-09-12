@@ -38,7 +38,7 @@ class ZModel extends AbstractTableModel{
 		return this.data[0][col].getClass();
 	}
 
-	public void removeRow(int position){
+	/*public void removeRow(int position){
 		int indice = 0, indice2 = 0;
 		nbRow = this.getRowCount()-1, nbCol = this.getColumnCount();
 		Object temp[][] = new Object[nbRow][nbCol];
@@ -53,7 +53,7 @@ class ZModel extends AbstractTableModel{
 		this.data = temp;
 		temp = null;
 		this.fireTableDataChanged();
-	}
+	}*/
 
 	public void addRow(Object[] data){
 		int indice = 0, nbRow = this.getRowCount(), nbCol = this.getColumnCount();
