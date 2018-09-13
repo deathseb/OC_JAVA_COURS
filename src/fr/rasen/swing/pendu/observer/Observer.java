@@ -1,4 +1,4 @@
-package fr.rasen.swing.pendu;
+package fr.rasen.swing.pendu.observer;
 
 public interface Observer {
 

@@ -1,4 +1,4 @@
-package fr.rasen.swing.mvc;
+package fr.rasen.swing.mvc.modele;
 
 public class Calculator extends AbstractModel{
 

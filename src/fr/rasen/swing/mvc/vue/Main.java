@@ -1,4 +1,9 @@
-package fr.rasen.swing.mvc;
+package fr.rasen.swing.mvc.vue;
+
+import fr.rasen.swing.mvc.controleur.AbstractControler;
+import fr.rasen.swing.mvc.controleur.CalculetteControler;
+import fr.rasen.swing.mvc.modele.AbstractModel;
+import fr.rasen.swing.mvc.modele.Calculator;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package fr.rasen.swing.pendu;
+package fr.rasen.swing.pendu.vue;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;

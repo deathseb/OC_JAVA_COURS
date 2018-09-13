@@ -1,4 +1,4 @@
-package fr.rasen.swing.mvc;
+package fr.rasen.swing.mvc.vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,6 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import fr.rasen.swing.mvc.Observer.Observer;
+import fr.rasen.swing.mvc.controleur.AbstractControler;
 
 public class Calculette extends JFrame implements Observer{
 

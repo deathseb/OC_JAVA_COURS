@@ -1,6 +1,8 @@
-package fr.rasen.swing.mvc;
+package fr.rasen.swing.mvc.controleur;
 
 import java.util.ArrayList;
+
+import fr.rasen.swing.mvc.modele.AbstractModel;
 
 public abstract class AbstractControler {
 

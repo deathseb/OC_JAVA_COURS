@@ -1,4 +1,4 @@
-package fr.rasen.swing.pendu;
+package fr.rasen.swing.pendu.vue;
 
 public class MainPendu {
 

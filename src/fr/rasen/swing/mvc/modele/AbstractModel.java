@@ -1,6 +1,9 @@
-package fr.rasen.swing.mvc;
+package fr.rasen.swing.mvc.modele;
 
 import java.util.ArrayList;
+
+import fr.rasen.swing.mvc.Observer.Observable;
+import fr.rasen.swing.mvc.Observer.Observer;
 
 public abstract class AbstractModel implements Observable{
 

@@ -1,4 +1,6 @@
-package fr.rasen.swing.mvc;
+package fr.rasen.swing.mvc.controleur;
+
+import fr.rasen.swing.mvc.modele.AbstractModel;
 
 public class CalculetteControler extends AbstractControler{
 
