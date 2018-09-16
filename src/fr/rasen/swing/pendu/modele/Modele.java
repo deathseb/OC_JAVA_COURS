@@ -1,45 +1,48 @@
 package fr.rasen.swing.pendu.modele;
 
-import java.util.ArrayList;
+public class Modele extends AbstractModele{
 
-import fr.rasen.swing.pendu.observer.Observable;
-import fr.rasen.swing.pendu.observer.Observer;
-
-public class Modele implements Observable{
-	
-	private Dico dico = new Dico(new LecteurDico());
-	private String mot = "";
-	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
+	private String chaineUnderAffichage = "";
+	private String chaineUnder ="";
+	private int compteurSansEspace;
+	private int compteurAvecEspace;
 
 	public Modele(){
-
-		int nbre = (int)(Math.random()*336529);
-		mot = dico.getMot(nbre);
-	}
-
-	public String getMot() {
-		return mot;
-	}
-
-	@Override
-	public void addObserver(Observer o) {
-		// TODO Auto-generated method stub
-		this.listObserver.add(o);
-	}
-
-	@Override
-	public void removeObserver() {
-		// TODO Auto-generated method stub
-		listObserver = new ArrayList<Observer>();
-	}
-
-	@Override
-	public void notifyObserver(String str) {
-		// TODO Auto-generated method stub
-		for(Observer obs : listObserver) {
-			obs.update(str);
+		super();
+		for (int i =0; i < this.mot.length(); i++) {
+			chaineUnderAffichage += "_ ";
 		}
 	}
 
+	public void test (String carac) {
+		compteurSansEspace = compteurAvecEspace = 0;
+		chaineUnder = "";
+		for (int i = 0; i < this.mot.length(); i++) {
+			if (this.mot.charAt(i) == carac.charAt(0)) {
+				chaineUnder = chaineUnder + carac ;
+			} else {
+				chaineUnder += "_";
+			}
+		}
+		String chaineUnderAffichage2 = chaineUnderAffichage;
+		chaineUnderAffichage = "";
+		for (int i = 0; i < this.mot.length(); i++) {
+			if (chaineUnder.charAt(i) != '_' && chaineUnder.charAt(i) != ' ') {
+				chaineUnderAffichage = chaineUnderAffichage + chaineUnder.charAt(compteurSansEspace) + " ";
+			} else {
+				chaineUnderAffichage = chaineUnderAffichage + chaineUnderAffichage2.charAt(compteurAvecEspace) + " ";
+			}
+			compteurAvecEspace += 2;
+			compteurSansEspace ++;
+		}
+		this.notifyObserver(chaineUnderAffichage);
+	}
 
+	public String getChaineUnderAffichage() {
+		return chaineUnderAffichage;
+	}
+
+	public void setChaineUnderAffichage(String chaineUnderAffichage) {
+		this.chaineUnderAffichage = chaineUnderAffichage;
+	}
 }

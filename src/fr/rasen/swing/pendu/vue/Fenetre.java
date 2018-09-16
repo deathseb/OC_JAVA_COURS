@@ -9,9 +9,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import fr.rasen.swing.pendu.controleur.AbstractControleur;
 import fr.rasen.swing.pendu.observer.Observer;
 
 public class Fenetre extends JFrame implements Observer{
+	private AbstractControleur ac;
 
 	private JMenuBar menu = new JMenuBar();
 
@@ -24,14 +26,16 @@ public class Fenetre extends JFrame implements Observer{
 	private JMenu apropos = new JMenu("A Propos");
 	private JMenuItem propos = new JMenuItem("A Propos");
 	private AccueilPanel accueil = new AccueilPanel();
-	private JeuPanel jeu = new JeuPanel();
+	private JeuPanel jeu;
 	private ScorePanel score = new ScorePanel();
 	private ReglesPanel regles = new ReglesPanel();
 
 	private Container ecran = this.getContentPane();
 
 
-	public Fenetre() {
+	public Fenetre(AbstractControleur ac) {
+		this.ac = ac;
+		jeu = new JeuPanel(ac);
 		this.setTitle("Pendu");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -96,6 +100,20 @@ public class Fenetre extends JFrame implements Observer{
 	@Override
 	public void update(String str) {
 		// TODO Auto-generated method stub
-		
+		ecran.removeAll();
+		jeu.getJl().removeAll();
+		jeu.getJl().setText(str);
+		ecran.add(jeu);
+		ecran.revalidate();
+		ecran.repaint();
+		boolean victoire = true;
+		for (int i =0; i < str.length(); i++) {
+			if (str.charAt(i) == '_') {
+				victoire = false;
+			}
+		}
+		if (victoire) {
+			System.out.println("Bravo vous avez trouvé le mot caché");
+		}
 	}
 }
