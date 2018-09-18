@@ -44,6 +44,7 @@ public class Fenetre extends JFrame implements Observer{
 		this.setSize(1000, 750);
 		ecran.add(accueil);
 
+		scores.addActionListener(new ScoreListener());
 		quitter.addActionListener(new ActionListener() {
 
 			@Override
@@ -94,6 +95,20 @@ public class Fenetre extends JFrame implements Observer{
 		}
 
 	}
+	
+	class ScoreListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			ecran.removeAll();
+			score.affichageScore();
+			ecran.add(score);
+			ecran.revalidate();
+			ecran.repaint();
+		}
+		
+	}
 
 	class JeuListener implements ActionListener {
 
@@ -119,6 +134,8 @@ public class Fenetre extends JFrame implements Observer{
 		}
 		if (erreur >= 8) {
 			ecran.removeAll();
+			score.sauvegarde(jeu.getScore(), "Seb");
+			score.affichageScore();
 			ecran.add(score);
 			ecran.revalidate();
 			ecran.repaint();
