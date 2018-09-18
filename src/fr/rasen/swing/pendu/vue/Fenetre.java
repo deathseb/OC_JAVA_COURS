@@ -29,6 +29,8 @@ public class Fenetre extends JFrame implements Observer{
 	private JeuPanel jeu;
 	private ScorePanel score = new ScorePanel();
 	private ReglesPanel regles = new ReglesPanel();
+	private boolean victoire = true;
+	private int erreur = 0;
 
 	private Container ecran = this.getContentPane();
 
@@ -71,6 +73,15 @@ public class Fenetre extends JFrame implements Observer{
 		this.setVisible(true);
 	}
 
+	public void victoire() {
+		jeu.setScore(erreur);
+		System.out.println(jeu.getScore());
+		jeu.getNewMot(); //génère un nouveau mot et le met dans le JLabel sous sa forme underscore
+		erreur = 0;
+		jeu.changeAffichage(erreur);
+		ecran.repaint();
+	}
+
 	class RegleListener implements ActionListener {
 
 		@Override
@@ -101,19 +112,31 @@ public class Fenetre extends JFrame implements Observer{
 	public void update(String str) {
 		// TODO Auto-generated method stub
 		ecran.removeAll();
-		jeu.getJl().removeAll();
-		jeu.getJl().setText(str);
-		ecran.add(jeu);
-		ecran.revalidate();
-		ecran.repaint();
-		boolean victoire = true;
+		String ancienneChaine = jeu.getJl().getText();
+		if (ancienneChaine.equals(str)) {
+			erreur ++;
+			jeu.changeAffichage(erreur);
+		}
+		if (erreur >= 8) {
+			ecran.removeAll();
+			ecran.add(score);
+			ecran.revalidate();
+			ecran.repaint();
+		}else {
+			jeu.getJl().removeAll();
+			jeu.getJl().setText(str);
+			ecran.add(jeu);
+			ecran.revalidate();
+			ecran.repaint();
+		}
+		this.victoire = true;
 		for (int i =0; i < str.length(); i++) {
 			if (str.charAt(i) == '_') {
-				victoire = false;
+				this.victoire = false;
 			}
 		}
 		if (victoire) {
-			System.out.println("Bravo vous avez trouvé le mot caché");
+			victoire();
 		}
 	}
 }

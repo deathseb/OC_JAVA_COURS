@@ -16,5 +16,17 @@ public abstract class AbstractControleur {
 		control();
 	}
 	
+	public void getNewMot() {
+		pendu.getNewMot();
+	}
+	
+	public String getUnderChaine() {
+		return pendu.getChaineUnderAffichage();
+	}
+	
+	public String getMot() {
+		return pendu.getMot();
+	}
+	
 	abstract void control();
 }

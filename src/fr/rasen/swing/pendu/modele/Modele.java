@@ -2,15 +2,13 @@ package fr.rasen.swing.pendu.modele;
 
 public class Modele extends AbstractModele{
 
-	private String chaineUnderAffichage = "";
-	private String chaineUnder ="";
 	private int compteurSansEspace;
 	private int compteurAvecEspace;
 
 	public Modele(){
 		super();
 		for (int i =0; i < this.mot.length(); i++) {
-			chaineUnderAffichage += "_ ";
+			this.chaineUnderAffichage += "_ ";
 		}
 	}
 
@@ -35,7 +33,8 @@ public class Modele extends AbstractModele{
 			compteurAvecEspace += 2;
 			compteurSansEspace ++;
 		}
-		this.notifyObserver(chaineUnderAffichage);
+		if(carac != "e" && carac != "é" && carac != "è" && carac != "ê" && carac != "a" && carac != "à" && carac != "â" && carac != "o" &&carac != "ô" && carac != "u" && carac != "ù" && carac != "ü" && carac != "i" && carac != "î" && carac != "c")
+			this.notifyObserver(chaineUnderAffichage);
 	}
 
 	public String getChaineUnderAffichage() {

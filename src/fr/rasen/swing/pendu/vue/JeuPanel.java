@@ -22,10 +22,12 @@ public class JeuPanel extends JPanel{
 	private JPanel panBoutons = new JPanel();
 	private JLabel icone = new JLabel(new ImageIcon("src/images/pendu/01.jpg"));
 	private AbstractControleur ac;
+	private int score = 0;
+	
 
 	public JeuPanel(AbstractControleur ac) {
 		this.ac = ac;
-		jl.setText(m.getChaineUnderAffichage());
+		jl.setText(ac.getUnderChaine());
 		this.add(jl, BorderLayout.NORTH);
 		panBoutons.setLayout(new GridLayout(4,7));
 		for (int i = 0; i < alphabet.length; i++) {
@@ -42,6 +44,129 @@ public class JeuPanel extends JPanel{
 	public JLabel getJl() {
 		return jl;
 	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int erreur) {
+		switch(erreur) {
+		case 0:
+			score += 100;
+			break;
+		case 1:
+			score += 50;
+			break;
+		case 2: 
+			score += 35;
+			break;
+		case 3 :
+			score += 25;
+			break;
+		case 4: 
+			score += 15;
+			break;
+		case 5:
+			score += 10;
+			break;
+		case 6:
+			score += 5;
+			break;
+		}
+	}
+
+	public void getNewMot() {
+		ac.getNewMot();
+		jl.setText(ac.getUnderChaine());
+		for (int i=0; i < boutons.length; i++) { // on réactive les boutons
+			boutons[i].setEnabled(true);
+		}
+	}
+
+	public void changeAffichage (int erreur) {
+		switch(erreur) {
+		case 0:
+			this.removeAll();
+			icone.removeAll();
+			icone = new JLabel(new ImageIcon("src/images/pendu/01.jpg"));
+			this.add(jl, BorderLayout.NORTH);
+			this.add(panBoutons, BorderLayout.WEST);
+			this.add(icone, BorderLayout.EAST);
+			this.revalidate();
+			this.repaint();
+			break;
+		case 1:
+			this.removeAll();
+			icone.removeAll();
+			icone = new JLabel(new ImageIcon("src/images/pendu/02.jpg"));
+			this.add(jl, BorderLayout.NORTH);
+			this.add(panBoutons, BorderLayout.WEST);
+			this.add(icone, BorderLayout.EAST);
+			this.revalidate();
+			this.repaint();
+			break;
+		case 2:
+			this.removeAll();
+			icone.removeAll();
+			icone = new JLabel(new ImageIcon("src/images/pendu/03.jpg"));
+			this.add(jl, BorderLayout.NORTH);
+			this.add(panBoutons, BorderLayout.WEST);
+			this.add(icone, BorderLayout.EAST);
+			this.revalidate();
+			this.repaint();
+			break;
+		case 3: 
+			this.removeAll();
+			icone.removeAll();
+			icone = new JLabel(new ImageIcon("src/images/pendu/04.jpg"));
+			this.add(jl, BorderLayout.NORTH);
+			this.add(panBoutons, BorderLayout.WEST);
+			this.add(icone, BorderLayout.EAST);
+			this.revalidate();
+			this.repaint();
+			break;
+		case 4:
+			this.removeAll();
+			icone.removeAll();
+			icone = new JLabel(new ImageIcon("src/images/pendu/05.jpg"));
+			this.add(jl, BorderLayout.NORTH);
+			this.add(panBoutons, BorderLayout.WEST);
+			this.add(icone, BorderLayout.EAST);
+			this.revalidate();
+			this.repaint();
+			break;
+		case 5: 
+			this.removeAll();
+			icone.removeAll();
+			icone = new JLabel(new ImageIcon("src/images/pendu/06.jpg"));
+			this.add(jl, BorderLayout.NORTH);
+			this.add(panBoutons, BorderLayout.WEST);
+			this.add(icone, BorderLayout.EAST);
+			this.revalidate();
+			this.repaint();
+			break;
+		case 6:
+			this.removeAll();
+			icone.removeAll();
+			icone = new JLabel(new ImageIcon("src/images/pendu/07.jpg"));
+			this.add(jl, BorderLayout.NORTH);
+			this.add(panBoutons, BorderLayout.WEST);
+			this.add(icone, BorderLayout.EAST);
+			this.revalidate();
+			this.repaint();
+			break;
+		case 7:
+			this.removeAll();
+			icone.removeAll();
+			icone = new JLabel(new ImageIcon("src/images/pendu/08.jpg"));
+			this.add(jl, BorderLayout.NORTH);
+			this.add(panBoutons, BorderLayout.WEST);
+			this.add(icone, BorderLayout.EAST);
+			this.revalidate();
+			this.repaint();
+			break;
+		}
+	}
 
 	class BoutonListener implements ActionListener{
 
@@ -49,10 +174,11 @@ public class JeuPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			String str = ((JButton) e.getSource()).getText();
-			ac.setCarac(str);
 			((JButton)e.getSource()).setEnabled(false); //désactive le boutton après avoir cliqué dessus
+			ac.setCarac(str);
+
 		}
 	}
-	
-	
+
+
 }

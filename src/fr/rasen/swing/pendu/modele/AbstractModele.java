@@ -8,12 +8,55 @@ import fr.rasen.swing.pendu.observer.Observer;
 public abstract class AbstractModele implements Observable{
 	
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
+	protected String chaineUnderAffichage = "";
+	protected String chaineUnder ="";
 	private Dico dico = new Dico(new LecteurDico());
 	protected String mot = "";
 
 	public AbstractModele() {
+		getNewMot();
+	}
+	
+	
+	public String getMot() {
+		return mot;
+	}
+
+	public void setMot(String mot) {
+		this.mot = mot;
+	}
+
+	
+
+	public String getChaineUnderAffichage() {
+		return chaineUnderAffichage;
+	}
+
+
+	public void setChaineUnderAffichage(String chaineUnderAffichage) {
+		this.chaineUnderAffichage = chaineUnderAffichage;
+	}
+
+
+	public String getChaineUnder() {
+		return chaineUnder;
+	}
+
+
+	public void setChaineUnder(String chaineUnder) {
+		this.chaineUnder = chaineUnder;
+	}
+
+
+	public void getNewMot() {
 		int nbre = (int)(Math.random()*336529);
 		mot = dico.getMot(nbre);
+		chaineUnderAffichage = "";
+		chaineUnder = "";
+		for (int i =0; i<mot.length(); i++) {
+			chaineUnderAffichage = chaineUnderAffichage + "_ ";
+			chaineUnder = chaineUnder + "_";
+		}
 	}
 	
 	public abstract void test(String carac);
