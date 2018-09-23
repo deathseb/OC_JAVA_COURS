@@ -1,13 +1,18 @@
 package fr.rasen.swing.pendu.vue;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JTextField;
 
 import fr.rasen.swing.pendu.controleur.AbstractControleur;
 import fr.rasen.swing.pendu.observer.Observer;
@@ -76,7 +81,6 @@ public class Fenetre extends JFrame implements Observer{
 
 	public void victoire() {
 		jeu.setScore(erreur);
-		System.out.println(jeu.getScore());
 		jeu.getNewMot(); //génère un nouveau mot et le met dans le JLabel sous sa forme underscore
 		erreur = 0;
 		jeu.changeAffichage(erreur);
@@ -116,6 +120,7 @@ public class Fenetre extends JFrame implements Observer{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			ecran.removeAll();
+			jeu = new JeuPanel(ac);
 			ecran.add(jeu);
 			ecran.revalidate();
 			ecran.repaint();
@@ -133,12 +138,31 @@ public class Fenetre extends JFrame implements Observer{
 			jeu.changeAffichage(erreur);
 		}
 		if (erreur >= 8) {
-			ecran.removeAll();
-			score.sauvegarde(jeu.getScore(), "Seb");
-			score.affichageScore();
-			ecran.add(score);
-			ecran.revalidate();
-			ecran.repaint();
+			JDialog jd = new JDialog();
+			jd.setSize(400, 400);
+			jd.setTitle("Entrez votre nom");
+			JTextField jtf = new JTextField();
+			jtf.setPreferredSize(new Dimension (100,25));
+			JButton jb = new JButton("Ok");
+			jb.setPreferredSize(new Dimension (50,25));
+			jb.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					score.sauvegarde(jeu.getScore(), jtf.getText());
+					score.affichageScore();
+					ecran.add(score);
+					ecran.revalidate();
+					ecran.repaint();
+					jd.setVisible(false);
+				}
+				
+			});
+			jd.getContentPane().add(jtf, BorderLayout.CENTER);
+			jd.getContentPane().add(jb, BorderLayout.SOUTH);
+			jd.setVisible(true);
+			
 		}else {
 			jeu.getJl().removeAll();
 			jeu.getJl().setText(str);
