@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 
 public class Connecteur {
 
-	private static String url;
-	private static String pass;
-	private static String user;
+	private static String url = "jdbc:postgresql://localhost:5432/Ecole";
+	private static String pass = "sebastien";
+	private static String user = "postgres";
 	
 	private static Connection connect;
 	
